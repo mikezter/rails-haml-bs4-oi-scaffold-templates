@@ -1,0 +1,11 @@
+.row
+  .col
+    %h1 New <%= singular_table_name %>
+  .col-auto
+    = link_to <%= index_helper %>_path, class: 'btn btn-outline-primary' do
+      %span.oi.oi-list
+      Back
+
+.row
+  .col
+    = render 'form'

@@ -1,0 +1,34 @@
+.row
+  .col
+    %h1 Listing <%= plural_table_name %>
+  .col-auto
+    = link_to new_<%= singular_table_name %>_path, class: 'btn btn-primary' do
+      %span.oi.oi-plus
+      New <%= human_name %>
+
+.row
+  .col
+    %table.table.table-striped.table-hover.table-sm
+      %thead
+        %tr
+<% for attribute in attributes -%>
+          %th <%= attribute.human_name %>
+<% end -%>
+          %th
+
+      %tbody
+        - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+          %tr
+  <% for attribute in attributes -%>
+          %td= <%= singular_table_name %>.<%= attribute.name %>
+  <% end -%>
+          %td.text-right
+              = link_to <%= singular_table_name %>, class: 'btn btn-outline-primary btn-sm mr-1' do
+                %span.oi.oi-info
+                Show
+              = link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: 'btn btn-outline-primary btn-sm mr-1' do
+                %span.oi.oi-pencil
+                Edit
+              = link_to <%= singular_table_name %>, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-outline-danger btn-sm ml-3' do
+                %span.oi.oi-delete
+                Destroy
